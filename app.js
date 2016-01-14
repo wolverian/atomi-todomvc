@@ -23046,18 +23046,18 @@ var web = function web(m) {
         "li",
         { key: id, className: (0, _baconReact.classes)(isDone && "completed", editing === id && "editing") },
         _react2.default.createElement("input", { className: "toggle", type: "checkbox", checked: isDone,
-          onChange: function onChange(_) {
+          onChange: function onChange() {
             return m.setItem({ id: id, title: title, isDone: !isDone });
           } }),
         _react2.default.createElement(
           "label",
-          { onDoubleClick: function onDoubleClick(_) {
+          { onDoubleClick: function onDoubleClick() {
               return editingAtom.set(id);
             },
             className: "view" },
           title
         ),
-        _react2.default.createElement("button", { className: "destroy", onClick: function onClick(_) {
+        _react2.default.createElement("button", { className: "destroy", onClick: function onClick() {
             return m.remItem({ id: id });
           } }),
         editing !== id ? null : function () {
@@ -23068,7 +23068,7 @@ var web = function web(m) {
           var save = function save() {
             var newTitle = textAtom.get().trim();
             exit();
-            newTitle !== "" && m.setItem({ id: id, title: newTitle, isDone: isDone });
+            newTitle === "" ? m.remItem({ id: id }) : m.setItem({ id: id, title: newTitle, isDone: isDone });
           };
           return _react2.default.createElement(_baconReact.InputValue, { didMount: function didMount(c) {
               return c && c.focus();
@@ -23097,7 +23097,7 @@ var web = function web(m) {
           "todos"
         ),
         _react2.default.createElement(_baconReact.InputValue, { type: "text", value: newAtom, className: "new-todo",
-          placeholder: "What needs to be done?",
+          autoFocus: true, placeholder: "What needs to be done?",
           onKeyDown: function onKeyDown(e) {
             var t = newAtom.get().trim();
             e.which === 13 && t !== "" && m.addItem(t) && newAtom.set("");
