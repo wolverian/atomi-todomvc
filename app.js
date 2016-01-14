@@ -22973,7 +22973,7 @@ var web = function web(m) {
             newTitle === "" ? m.remItem({ id: id }) : m.setItem({ id: id, title: newTitle, isDone: isDone });
           };
           return _react2.default.createElement(_baconReact.Input, { type: "text", className: "edit", value: text,
-            onChange: (0, _baconReact.set)(text), didMount: function didMount(c) {
+            onChange: (0, _baconReact.set)(text), mount: function mount(c) {
               return c && c.focus();
             },
             onBlur: save, onKeyDown: function onKeyDown(e) {
